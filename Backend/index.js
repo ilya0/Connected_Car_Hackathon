@@ -1,21 +1,55 @@
 var express       = require('express'); //linking the express module
-var app           = express(); //app instance of express
 var bodyParser    = require('body-parser');
 var port          = process.env.PORT || 3000; //  sets the listining port
 var router        = express.Router(); //simplifying the router
 var logger        = require( 'morgan' ); //logs the shit into console
 var path          = require('path');
 var http          = require('http'); // Im not sure if I need this I just cant get this fuckign http to link with the js and the css
-var dotenv        = require('dotenv');
 var nodeflix      = require('./nodeflix');
 // this is the global variable to allow the drone to fly or not
 var shouldifly = false;
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var debug = require('debug')('app:http');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var request = require('request');
+var methodOverride = require('moethod-override');
+
+require('dotenv').load();
+
+var env = require('./Backend/Config/environment');
+var mongoose = require('./Backend/config/database');
+var routes = require('./Backend/config/routes');
+
+
+
+var app = express(); //app instance of express
+
+
+require('./Backend/config/database');
+
+app.use(session({
+  secret: '',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Logging Layer
+app.use(logger('dev'));
+app.use(methodOverride('_method'));
 
 // Use middleware
 app.use( logger( 'dev' ) ); // this allows the loggin into the console
 app.use( bodyParser.json() ); //parses the json
 app.use( bodyParser.urlencoded( { extended: false } ) ); // this is to use routes encoding
+app.use(cookieParser('notsosecretnowareyou'));
 app.use(express.static(path.join(__dirname, 'public'))); // for the serving up the public files
+
+app.use(debugReq);
+
+
+app.use('/', routes);
 
 
 // NODEFLIX NETFLIX examples
@@ -65,6 +99,31 @@ n.get('/catalog/people', { term: 'Bruce Willis' }).end(function() {
 
 // END OF NODEFLIX NETFLIX examples
 
+
+// Catches all 404 routes.
+app.use(function(req, res, next) {
+ var err = new Error('Not Found');
+ err.status = 404;
+ next(err);
+});
+
+// Error-handling layer.
+app.use(function(err, req, res, next) {
+ // In development, the error handler will print stacktrace.
+ err = (app.get('env') === 'development') ? err : {};
+ res.status(err.status || 500);
+ res.render('error', {
+   message: err.message,
+   error: err
+ });
+});
+
+function debugReq(req, res, next) {
+ debug('params:', req.params);
+ debug('query:',  req.query);
+ debug('body:',   req.body);
+ next();
+}
 
 //this is the home page
 app.get('/', function(req,res){
