@@ -1,0 +1,30 @@
+{
+  "name": "connected_car_hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "app": "^0.1.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "logger": "0.0.1",
+    "path": "^0.12.7",
+    "port": "^0.8.1",
+    "router": "^1.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilya0/Connected_Car_Hackathon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilya0/Connected_Car_Hackathon/issues"
+  },
+  "homepage": "https://github.com/ilya0/Connected_Car_Hackathon#readme"
+}
