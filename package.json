@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^2.0.0"
+  },
   "devDependencies": {
     "app": "^0.1.0",
     "body-parser": "^1.15.2",
