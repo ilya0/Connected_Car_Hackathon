@@ -1,26 +1,27 @@
-var express       = require('express'); //linking the express module
-var bodyParser    = require('body-parser');
-var port          = process.env.PORT || 3000; //  sets the listining port
-var router        = express.Router(); //simplifying the router
-var logger        = require( 'morgan' ); //logs the shit into console
-var path          = require('path');
-var http          = require('http'); // Im not sure if I need this I just cant get this fuckign http to link with the js and the css
-var nodeflix      = require('./nodeflix');
+var express        = require('express'); //linking the express module
+var bodyParser     = require('body-parser');
+var port           = process.env.PORT || 3000; //  sets the listining port
+var router         = express.Router(); //simplifying the router
+var logger         = require( 'morgan' ); //logs the shit into console
+var path           = require('path');
+var http           = require('http'); // Im not sure if I need this I just cant get this fuckign http to link with the js and the css
+var nodeflix       = require('./nodeflix');
 // this is the global variable to allow the drone to fly or not
-var shouldifly = false;
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var debug = require('debug')('app:http');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var request = require('request');
+var shouldifly     = false;
+var favicon        = require('serve-favicon');
+var logger         = require('morgan');
+var debug          = require('debug')('app:http');
+var cookieParser   = require('cookie-parser');
+var session        = require('express-session');
+var User           = require('./Backend/models/user');
+var request        = require('request');
 var methodOverride = require('moethod-override');
 
 require('dotenv').load();
 
-var env = require('./Backend/Config/environment');
+var env      = require('./Backend/Config/environment');
 var mongoose = require('./Backend/config/database');
-var routes = require('./Backend/config/routes');
+var routes   = require('./Backend/config/routes');
 
 
 
