@@ -39,3 +39,4 @@ Alex goes to the movies every friday and watches a chick flick movie. He goes to
  	- mongodb?
  - some sort of frontend 
  - alexa? for incar interactions?
+ - mojio for trends, database and simulation
