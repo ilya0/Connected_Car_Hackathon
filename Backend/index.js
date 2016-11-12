@@ -2,12 +2,11 @@ var express       = require('express'); //linking the express module
 var app           = express(); //app instance of express
 var bodyParser    = require('body-parser');
 var port          = process.env.PORT || 3000; //  sets the listining port
-var express       = require('express'); // including theexpress file in this file
 var router        = express.Router(); //simplifying the router
 var logger        = require( 'morgan' ); //logs the shit into console
 var path          = require('path');
 var http          = require('http'); // Im not sure if I need this I just cant get this fuckign http to link with the js and the css
-
+var dotenv        = require('dotenv');
 
 // this is the global variable to allow the drone to fly or not
 var shouldifly = false;
