@@ -34,12 +34,15 @@ router.get('/runprogram', function(req, res, next) {
 
 var getgoogleplacesdata = function(carlocationlong, carlocationlat, cartime){
 
-request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyCihzpBz81mq08Dc1g2xCmyqIVKeJQNQwo',
+request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.1020231,-118.34097120000001&radius=10&keyword=points_of_interest&key=AIzaSyCihzpBz81mq08Dc1g2xCmyqIVKeJQNQwo',
 
   function (error, response, body) {
   if (!error && response.statusCode == 200) {
     bodyholder = body;
-    console.log(bodyholder);// Print the google web page.
+    console.log(bodyholder.results.types[0]);// Print the google web page.
+//this is how we would run the right ones
+    //bodyholder.results.types[0]
+
     // res.json(body);
   }
 });

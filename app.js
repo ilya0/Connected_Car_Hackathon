@@ -21,8 +21,8 @@ var indexRoutes    = require('./Backend/config/routes');
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 
 //creating a location and time variable to test
-var mojiotestlocationlong = 34.045746;
-var mojiotestlocationlat = 118.268037;
+var mojiotestlocationlong = -118.34097120000001;
+var mojiotestlocationlat = 34.1020231;
 var mojiotesttime = 7;
 
 
