@@ -15,7 +15,7 @@ var User           = require('./Backend/models/user'); // Include User model wit
 var request        = require('request'); // make http requests in the config/routes.js
 var methodOverride = require('method-override');
 
-var MojioClientLite = require('MojioClientLite');
+var MojioClientLite = require('mojio-client-lite');
 
 // MOJIO Code
 var config = {
