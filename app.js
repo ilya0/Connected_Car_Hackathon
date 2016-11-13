@@ -19,7 +19,7 @@ var mongoose       = require('./Backend/config/database'); // through mongod and
 var app            = express(); //app instance of express
 var indexRoutes    = require('./Backend/config/routes');
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
-
+var mojioConfig    = require('./Backend/config/mojioConfig');
 //creating a location and time variable to test
 var mojiotestlocationlong = 34.045746;
 var mojiotestlocationlat = 118.268037;
