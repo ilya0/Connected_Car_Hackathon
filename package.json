@@ -2,11 +2,12 @@
   "name": "connected_car_hackathon",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "connect": "^3.5.0",
     "connect-multiparty": "^2.0.0",
     "cookie-monster": "^0.2.0",
+    "cookie-parser": "^1.4.3",
     "debug": "^2.3.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.5.2",

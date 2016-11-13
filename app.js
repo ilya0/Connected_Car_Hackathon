@@ -1,13 +1,11 @@
 var express        = require('express'); //linking the express module
 var bodyParser     = require('body-parser');
-var port           = process.env.PORT || 3000; //  sets the listining port
+// var port           = process.env.PORT || 3000; //  sets the listining port
 var router         = express.Router(); //simplifying the router
 var logger         = require( 'morgan' ); //logs the shit into console
 var path           = require('path');
 var http           = require('http'); // Im not sure if I need this I just cant get this fuckign http to link with the js and the css
 // var nodeflix       = require('./nodeflix');
-// this is the global variable to allow the drone to fly or not
-var shouldifly     = false;
 var favicon        = require('serve-favicon');
 var logger         = require('morgan'); // console.log errors
 var debug          = require('debug')('app:http');
@@ -16,18 +14,19 @@ var session        = require('express-session'); //
 var passport       = require('passport');
 var User           = require('./Backend/models/user'); // Include User model within app
 var request        = require('request'); // make http requests in the config/routes.js
-var methodOverride = require('moethod-override');
+var methodOverride = require('method-override');
 
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 
 var env      = require('./Backend/config/environment'); // Load up localhost through nodemon
 var mongoose = require('./Backend/config/database'); // Load Up mongoose through mongod and mongo
-var routes   = require('./Backend/config/routes'); // Get routes that call a method which are exported through module.exports from controllers
+// var routes   = require('./Backend/config/routes'); // Get routes that call a method which are exported through module.exports from controllers
 
 
 
 var app = express(); //app instance of express
 
+var indexRoutes = require('./Backend/config/routes');
 
 app.set('title', env.TITLE);
 app.set('safe-title', env.SAFE_TITLE);
@@ -40,11 +39,11 @@ require('./Backend/config/passport');
 
 app.locals.title = app.get('title');
 
-app.use(session({
-  secret: '',
-  resave: false,
-  saveUninitialized: true
-}));
+// app.use(session({
+//   secret: '',
+//   resave: false,
+//   saveUninitialized: true
+// }));
 
 // Logging Layer
 app.use(logger('dev'));
@@ -66,7 +65,7 @@ app.use(passport.session());
 app.use(debugReq);
 
 
-app.use('/', routes);
+ app.use('/', indexRoutes);
 
 
 
@@ -78,16 +77,16 @@ app.use(function(req, res, next) {
  next(err);
 });
 
-// Error-handling layer.
-app.use(function(err, req, res, next) {
- // In development, the error handler will print stacktrace.
- err = (app.get('env') === 'development') ? err : {};
- res.status(err.status || 500);
- res.render('error', {
-   message: err.message,
-   error: err
- });
-});
+// // Error-handling layer.
+// app.use(function(err, req, res, next) {
+//  // In development, the error handler will print stacktrace.
+//  err = (app.get('env') === 'development') ? err : {};
+//  res.status(err.status || 500);
+//  res.render('error', {
+//    message: err.message,
+//    error: err
+//  });
+// });
 
 function debugReq(req, res, next) {
  debug('params:', req.params);
@@ -97,42 +96,44 @@ function debugReq(req, res, next) {
 }
 
 //this is the home page
-app.get('/', function(req,res){
-  console.log(shouldifly);
+// app.get('/', function(req,res){
+//   console.log("home route hit");
 
-  // res.json({message:messagedisplay});
-  res.sendFile(path.join(__dirname + '/Views/index.html')); //goes through path and then opens the view
-});
-
-app.get('/getstatus', function(req,res){
-     res.json({message:shouldifly});
-});
+//   // res.json({message:messagedisplay});
+//   res.sendFile(path.join(__dirname + '/Views/index.html')); //goes through path and then opens the view
+// });
 
 
-//change var to fly, initate flight
-app.post('/activatefly', function(req,res){
-
-    shouldifly = true;
-    console.log("activate fly route hit");
-    console.log(shouldifly);
-
-     res.json({sucess:true,message:'Fly activated'});
-});
+// //this could be the status of the car
+// app.get('/getstatus', function(req,res){
+//      res.json({message:"car is enroute or maybe not"});
+// });
 
 
-app.post('/deactivatefly', function(req,res){
+// //change var to fly, initate flight
+// app.post('/activatefly', function(req,res){
 
-    shouldifly = false;
-    console.log("deactivate fly route hit");
-    console.log(shouldifly);
+//     shouldifly = true;
+//     console.log("activate fly route hit");
+//     console.log(shouldifly);
 
-     res.json({sucess:false,message:'Fly Deactivated'});
-});
+//      res.json({sucess:true,message:'Fly activated'});
+// });
 
 
+// app.post('/deactivatefly', function(req,res){
 
-app.listen(port, function() {
-  console.log('drone security running on port', port);
+//     shouldifly = false;
+//     console.log("deactivate fly route hit");
+//     console.log(shouldifly);
+
+//      res.json({sucess:false,message:'Fly Deactivated'});
+// });
+
+// app.use('/', indexRoutes);
+
+app.listen(3000, function() {
+  console.log('butler app running on', 3000);
 });
 
 module.exports = router;
