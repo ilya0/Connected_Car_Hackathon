@@ -14,12 +14,20 @@ var passport       = require('passport');
 var User           = require('./Backend/models/user'); // Include User model within app
 var request        = require('request'); // make http requests in the config/routes.js
 var methodOverride = require('method-override');
+
 var MojioClientLite = require('MojioClientLite');
 
 // MOJIO Code
 var config = {
       application: '066c5a0e-aa49-4533-9d13-60d511726bbf' // your application ID
     }
+=======
+var env            = require('./Backend/config/environment'); // Load up localhost through nodemon
+var mongoose       = require('./Backend/config/database'); // through mongod and mongo
+var app            = express(); //app instance of express
+var indexRoutes    = require('./Backend/config/routes');
+require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
+
 
 var mojio_client = new MojioClientLite(MojioClientLite);
 
