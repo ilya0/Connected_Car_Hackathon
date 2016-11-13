@@ -17,6 +17,7 @@ var app            = express();
 // var mojiotesttime = appjs.mojiotesttime;
 
 // these export situation needs to be fixed
+///these would be the variables that mojio supplies
 var mojiotestlocationlong = -118.34097120000001;
 var mojiotestlocationlat = 34.1020231;
 var mojiotesttime = "7:00 pm";
@@ -35,7 +36,7 @@ router.get('/', function(req, res, next) {
 
 
 //initialize the program
-router.get('/logtrip', function(req, res, next) {
+router.get('/runprogram', function(req, res, next) {
    console.log(" /runprogram initialized");
    console.log(" long is "+mojiotestlocationlong+" lat is"+mojiotestlocationlat);
   request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&rankby=distance&types=food&key=AIzaSyCihzpBz81mq08Dc1g2xCmyqIVKeJQNQwo',
@@ -67,10 +68,9 @@ router.get('/logtrip', function(req, res, next) {
 
 });
 
-
-//this needs be to changed with the test url
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${carlocationlat},{carlocationlong}&radius=500&type=restaurant&keyword=cruise&key=GOOGLE_PLACES_API_KEY`
-
+var runanaly = function(){
+console.log("run analysis ran");
+};
 
 
 
