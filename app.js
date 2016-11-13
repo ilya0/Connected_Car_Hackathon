@@ -5,7 +5,6 @@ var router         = express.Router(); //simplifying the router
 var logger         = require( 'morgan' ); //logs the shit into console
 var path           = require('path');
 var http           = require('http'); // Im not sure if I need this I just cant get this fuckign http to link with the js and the css
-// var nodeflix       = require('./nodeflix');
 var favicon        = require('serve-favicon');
 var logger         = require('morgan'); // console.log errors
 var debug          = require('debug')('app:http');
