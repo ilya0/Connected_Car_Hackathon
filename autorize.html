@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+
+<div id="result"></div>
+<br/>
+<div id="result2"></div>
+<br/>
+<div id="result3"></div>
+<br/>
+
+<script src="./bower_components/jquery/dist/jquery.js"></script>
+<script src="./bower_components/signalr/jquery.signalR-2.0.2.js"></script>
+<script src="./bower_components/mojio-client-lite/src/MojioClientLite.js"></script>
+<script>
+  var config = {
+      application: '066c5a0e-aa49-4533-9d13-60d511726bbf', // your application ID
+      redirect_uri: 'localhost:8000/Connected_Car_Hackathon/index.html'
+    }
+
+var mojio_client = new MojioClientLite(MojioClientLite);
+
+if (mojio_client.token()){
+  alert("Auth successful");
+}
+else{
+  mojio_client.authorize();
+}
+console.log("logged in");
+</script>
+<!--<script src="https://djaqzxyxnyyiy.cloudfront.net/mojio-js.js"></script>-->
+<!--<script src="./js/authorize.js"></script>-->
+
+</body>

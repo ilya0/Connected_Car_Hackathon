@@ -14,30 +14,34 @@ var passport       = require('passport');
 var User           = require('./Backend/models/user'); // Include User model within app
 var request        = require('request'); // make http requests in the config/routes.js
 var methodOverride = require('method-override');
-var env            = require('./Backend/config/environment'); // Load up localhost through nodemon
-var mongoose       = require('./Backend/config/database'); // through mongod and mongo
-var app            = express(); //app instance of express
-var indexRoutes    = require('./Backend/config/routes');
+var MojioClientLite = require('MojioClientLite');
+
+// MOJIO Code
+var config = {
+      application: '066c5a0e-aa49-4533-9d13-60d511726bbf' // your application ID
+    }
+
+var mojio_client = new MojioClientLite(MojioClientLite);
+
+if (mojio_client.token()){
+  alert("Auth successful");
+}
+else{
+  mojio_client.authorize();
+}
+console.log("logged in");
 
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 
-//creating a location and time variable to test
-var mojiotestlocationlong = 34.045746;
-var mojiotestlocationlat = 118.268037;
-var mojiotesttime = 7;
+var env      = require('./Backend/config/environment'); // Load up localhost through nodemon
+var mongoose = require('./Backend/config/database'); // Load Up mongoose through mongod and mongo
+// var routes   = require('./Backend/config/routes'); // Get routes that call a method which are exported through module.exports from controllers
 
 
-exports.mojiotestlocationlong = mojiotestlocationlong;
-exports.mojiotestlocationlat = mojiotestlocationlat;
-exports.mojiotesttesttime = mojiotesttime;
 
-//creating a massive storage array for users
-var userarray = [
-{name: "this is user1"},
-{name: "this is user2"}
-];
+var app = express(); //app instance of express
 
-
+var indexRoutes = require('./Backend/config/routes');
 
 app.set('title', env.TITLE);
 app.set('safe-title', env.SAFE_TITLE);
@@ -148,3 +152,4 @@ app.listen(port, function() {
 });
 
 module.exports = router;
+

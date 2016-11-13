@@ -1,13 +1,13 @@
- var config = {
-      application: '066c5a0e-aa49-4533-9d13-60d511726bbf' // your application ID
-      secret:  '0cbf1b3b-cacc-49dc-8e62-9fb3a508f1d6' // your application secret
-      environment: '' // staging, develope, ...
-      accountsURL: 'accounts.moj.io'
-      apiURL: 'api.moj.io'
-      pushURL: 'push.moj.io'
-      scope:'full'
-      acceptLanguage:'en'
-    }
+ // var config = {
+ //      application: '066c5a0e-aa49-4533-9d13-60d511726bbf' // your application ID
+ //      // secret: '0cbf1b3b-cacc-49dc-8e62-9fb3a508f1d6' // your application secret
+ //      environment: '' // staging, develope, ...
+ //      accountsURL: 'accounts.moj.io'
+ //      apiURL: 'api.moj.io'
+ //      pushURL: 'push.moj.io'
+ //      scope:'full'
+ //      acceptLanguage:'en'
+ //    }
 
 var MojioClientLite= require("MojioClientLite");
 
@@ -30,6 +30,22 @@ var mojio_client = new MojioClientLite(config);
     }
     mojio_client.refreshToken();
 
+    mojio_client.authorize('marcusgraydev@gmail.com','Ogunmojio1313').then(function(res,err){
+
+      if(typeof(err)!="undefined")
+      {
+          console.log("login error");
+          return;
+      }
+      else {
+          console.log ("login successful");
+          return;
+      }
+
+      })
+    mojio_client.refreshToken();
+
+    var mojio_client = new MojioClientLite(config);
 
 // (function() {
 //   var MojioClient, config, mojio_client;
