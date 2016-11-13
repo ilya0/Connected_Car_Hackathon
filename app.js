@@ -14,18 +14,25 @@ var passport       = require('passport');
 var User           = require('./Backend/models/user'); // Include User model within app
 var request        = require('request'); // make http requests in the config/routes.js
 var methodOverride = require('method-override');
+var env            = require('./Backend/config/environment'); // Load up localhost through nodemon
+var mongoose       = require('./Backend/config/database'); // through mongod and mongo
+var app            = express(); //app instance of express
+var indexRoutes    = require('./Backend/config/routes');
 
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 
-var env      = require('./Backend/config/environment'); // Load up localhost through nodemon
-var mongoose = require('./Backend/config/database'); // Load Up mongoose through mongod and mongo
-// var routes   = require('./Backend/config/routes'); // Get routes that call a method which are exported through module.exports from controllers
+//creating a location and time variable to test
+var mojiotestlocation = "";
+var mojiotesttime = "";
 
 
+//creating a massive storage array for users
+var userarray = [
+{name: "this is user1"},
+{name: "this is user2"}
+];
 
-var app = express(); //app instance of express
 
-var indexRoutes = require('./Backend/config/routes');
 
 app.set('title', env.TITLE);
 app.set('safe-title', env.SAFE_TITLE);
