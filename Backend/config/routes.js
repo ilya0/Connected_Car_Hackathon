@@ -6,7 +6,7 @@ var fs             = require('fs');
 var connect        = require('connect');
 var methodOverride = require('method-override');
 var appjs          = require('../../app');
-
+var request        = require('request')
 var mojiotestlocationlong = appjs.mojiotestlocationlong;
 var mojiotestlocationlat = appjs.mojiotestlocationlat;
 var mojiotesttime = appjs.mojiotesttime;
