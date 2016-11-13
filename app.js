@@ -1,6 +1,6 @@
 var express        = require('express'); //linking the express module
 var bodyParser     = require('body-parser');
-// var port           = process.env.PORT || 3000; //  sets the listining port
+var port           = process.env.PORT || 3000; //  sets the listining port
 var router         = express.Router(); //simplifying the router
 var logger         = require( 'morgan' ); //logs the shit into console
 var path           = require('path');
@@ -132,8 +132,8 @@ function debugReq(req, res, next) {
 
 // app.use('/', indexRoutes);
 
-app.listen(3000, function() {
-  console.log('butler app running on', 3000);
+app.listen(port, function() {
+  console.log('butler app running on', port);
 });
 
 module.exports = router;
