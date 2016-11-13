@@ -21,7 +21,7 @@ var MojioClientLite = require('MojioClientLite');
 var config = {
       application: '066c5a0e-aa49-4533-9d13-60d511726bbf' // your application ID
     }
-=======
+
 var env            = require('./Backend/config/environment'); // Load up localhost through nodemon
 var mongoose       = require('./Backend/config/database'); // through mongod and mongo
 var app            = express(); //app instance of express
