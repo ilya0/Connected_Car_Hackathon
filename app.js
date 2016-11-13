@@ -9,26 +9,36 @@ var nodeflix       = require('./nodeflix');
 // this is the global variable to allow the drone to fly or not
 var shouldifly     = false;
 var favicon        = require('serve-favicon');
-var logger         = require('morgan');
+var logger         = require('morgan'); // console.log errors
 var debug          = require('debug')('app:http');
 var cookieParser   = require('cookie-parser');
-var session        = require('express-session');
-var User           = require('./Backend/models/user');
-var request        = require('request');
+var session        = require('express-session'); //
+var passport       = require('passport');
+var User           = require('./Backend/models/user'); // Include User model within app
+var request        = require('request'); // make http requests in the config/routes.js
 var methodOverride = require('moethod-override');
 
-require('dotenv').load();
+require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 
-var env      = require('./Backend/Config/environment');
-var mongoose = require('./Backend/config/database');
-var routes   = require('./Backend/config/routes');
+var env      = require('./Backend/config/environment'); // Load up localhost through nodemon
+var mongoose = require('./Backend/config/database'); // Load Up mongoose through mongod and mongo
+var routes   = require('./Backend/config/routes'); // Get routes that call a method which are exported through module.exports from controllers
 
 
 
 var app = express(); //app instance of express
 
 
+app.set('title', env.TITLE);
+app.set('safe-title', env.SAFE_TITLE);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 require('./Backend/config/database');
+require('./Backend/config/passport');
+
+
+app.locals.title = app.get('title');
 
 app.use(session({
   secret: '',
@@ -46,6 +56,12 @@ app.use( bodyParser.json() ); //parses the json
 app.use( bodyParser.urlencoded( { extended: false } ) ); // this is to use routes encoding
 app.use(cookieParser('notsosecretnowareyou'));
 app.use(express.static(path.join(__dirname, 'public'))); // for the serving up the public files
+
+
+//PASSPORT Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(debugReq);
 
