@@ -18,7 +18,6 @@ var env            = require('./Backend/config/environment'); // Load up localho
 var mongoose       = require('./Backend/config/database'); // through mongod and mongo
 var app            = express(); //app instance of express
 var indexRoutes    = require('./Backend/config/routes');
-
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 
 //creating a location and time variable to test

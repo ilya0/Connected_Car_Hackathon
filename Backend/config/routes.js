@@ -6,10 +6,14 @@ var fs             = require('fs');
 var connect        = require('connect');
 var methodOverride = require('method-override');
 var appjs          = require('../../app');
-var request        = require('request')
+var request        = require('request');
+var morgan         = require('morgan');
+
+//this should be exporting variable but its not working for some fucking reason
 var mojiotestlocationlong = appjs.mojiotestlocationlong;
 var mojiotestlocationlat = appjs.mojiotestlocationlat;
 var mojiotesttime = appjs.mojiotesttime;
+var bodyholder;
 
 router.get('/', function(req, res, next) {
    console.log("home route hit");
@@ -19,26 +23,27 @@ router.get('/', function(req, res, next) {
 
 router.get('/runprogram', function(req, res, next) {
    console.log("program initialized");
-   console.log("long is "+mojiotestlocationlong+"lat is"+mojiotestlocationlat);
+   console.log(" long is "+mojiotestlocationlong+" lat is"+mojiotestlocationlat);
    console.log("running program");
    getgoogleplacesdata(mojiotestlocationlong,mojiotestlocationlat); //this is running the rest
 });
 
+//this needs be to changed with the test url
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${carlocationlat},{carlocationlong}&radius=500&type=restaurant&keyword=cruise&key=GOOGLE_PLACES_API_KEY`
+
 
 var getgoogleplacesdata = function(carlocationlong, carlocationlat, cartime){
-        $.ajax({
-          url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${carlocationlat},{carlocationlong}&radius=500&type=restaurant&keyword=cruise&key=GOOGLE_PLACES_API_KEY`,
 
-          })
-        .done(function(data){
-          givemedata = data;
-          console.log(data);
+request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyCihzpBz81mq08Dc1g2xCmyqIVKeJQNQwo',
 
-
-
+  function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    bodyholder = body;
+    console.log(bodyholder);// Print the google web page.
+    // res.json(body);
+  }
+});
 //this will need to be a sort through the json object
-
-            // $("#div1").html("this is changing the div1 on button click");
 
             // for(i=0; i< data.results.length;i++){
             // console.log(data.results[i].name);
@@ -46,7 +51,7 @@ var getgoogleplacesdata = function(carlocationlong, carlocationlat, cartime){
             // $(".ulclass").append('<li>'+data.results[i].name+'</li>');
             // }
 
-           });
+
         };
 
 
