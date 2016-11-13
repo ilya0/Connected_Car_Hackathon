@@ -1,0 +1,31 @@
+{
+  "name": "mojio-client-lite",
+  "authors": [
+    "Pooya Paridel"
+  ],
+  "description": "Mojio Client SDK (Lite version)",
+  "main": "src/MojioClientLite.js",
+  "keywords": [
+    "Mojio",
+    "SDK",
+    "javascript",
+    "coffeescript"
+  ],
+  "license": "",
+  "homepage": "http://moj.io",
+  "private": true,
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {},
+  "_release": "8bada9b951",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8bada9b95157d93f009fb63c1a996f42db502f8e"
+  },
+  "_source": "https://github.com/mojio/MojioClientLite.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/mojio/MojioClientLite.git",
+  "_direct": true
+}
