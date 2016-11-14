@@ -59,8 +59,6 @@ router.get('/runprogram', function(req, res, next) {
     historyarray.push({type:bodyholder.results[0].types[0], Time: mojiotesttime});
       console.log(historyarray);
          }
-
-
         }
 
       }
