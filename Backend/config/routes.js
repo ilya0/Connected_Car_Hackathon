@@ -31,9 +31,13 @@ router.get('/', function(req, res, next) {
    res.json({message:"car is enroute or maybe not"});
 });
 
+
 router.get('/sendsms', function(req, res, next) {
-   console.log("home route hit");
-   res.json({message:"car is enroute or maybe not"});
+  var c = new TMClient('username', 'C7XDKZOQZo6HvhJwtUw0MBcslfqwtp4');
+  c.Messages.send({text: 'test message', phones:'7035099302'}, function(err, res){
+      console.log('Messages.send()', err, res);
+  });
+
 });
 
 
