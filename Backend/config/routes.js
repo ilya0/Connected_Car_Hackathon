@@ -9,7 +9,7 @@ var appjs          = require('../../app');
 var request        = require('request');
 var morgan         = require('morgan');
 var app            = express();
-
+var TMClient       = require('textmagic-rest-client');
 ////Exporting variables from app.js not working
 //this should be exporting variable but its not working for some fucking reason
 // var mojiotestlocationlong = appjs.mojiotestlocationlong;
@@ -31,6 +31,10 @@ router.get('/', function(req, res, next) {
    res.json({message:"car is enroute or maybe not"});
 });
 
+router.get('/sendsms', function(req, res, next) {
+   console.log("home route hit");
+   res.json({message:"car is enroute or maybe not"});
+});
 
 
 

@@ -20,6 +20,12 @@ var app            = express(); //app instance of express
 var indexRoutes    = require('./Backend/config/routes');
 require('dotenv').load(); // load ENV variables dynamically by callig process.env.WHATEVER
 var mojioConfig    = require('./Backend/config/mojioConfig');
+var TMClient       = require('textmagic-rest-client'); ///sms magic text sending package
+
+
+
+
+
 //creating a location and time variable to test
 var mojiotestlocationlong = -118.34097120000001;
 var mojiotestlocationlat = 34.1020231;
